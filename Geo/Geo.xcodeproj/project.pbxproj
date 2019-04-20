@@ -13,6 +13,8 @@
 		D35AF028225692FA0076CB96 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D35AF026225692FA0076CB96 /* Main.storyboard */; };
 		D35AF032225693D80076CB96 /* SequencerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D35AF031225693D80076CB96 /* SequencerView.swift */; };
 		D3D7F410226A42D800580F42 /* NSBezierPathExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3D7F40F226A42D800580F42 /* NSBezierPathExtensions.swift */; };
+		D3D7F413226B46B100580F42 /* Shape.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3D7F412226B46B100580F42 /* Shape.swift */; };
+		D3D7F415226B46E200580F42 /* DoubleExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3D7F414226B46E200580F42 /* DoubleExtensions.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -25,6 +27,8 @@
 		D35AF02A225692FA0076CB96 /* Geo.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Geo.entitlements; sourceTree = "<group>"; };
 		D35AF031225693D80076CB96 /* SequencerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SequencerView.swift; sourceTree = "<group>"; };
 		D3D7F40F226A42D800580F42 /* NSBezierPathExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NSBezierPathExtensions.swift; sourceTree = "<group>"; };
+		D3D7F412226B46B100580F42 /* Shape.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Shape.swift; sourceTree = "<group>"; };
+		D3D7F414226B46E200580F42 /* DoubleExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DoubleExtensions.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -57,6 +61,7 @@
 		D35AF01F225692F80076CB96 /* Geo */ = {
 			isa = PBXGroup;
 			children = (
+				D3D7F411226B46A400580F42 /* Enums */,
 				D3D7F40E226A42C500580F42 /* Extensions */,
 				D35AF030225693C60076CB96 /* Views */,
 				D35AF020225692F80076CB96 /* AppDelegate.swift */,
@@ -81,8 +86,17 @@
 			isa = PBXGroup;
 			children = (
 				D3D7F40F226A42D800580F42 /* NSBezierPathExtensions.swift */,
+				D3D7F414226B46E200580F42 /* DoubleExtensions.swift */,
 			);
 			path = Extensions;
+			sourceTree = "<group>";
+		};
+		D3D7F411226B46A400580F42 /* Enums */ = {
+			isa = PBXGroup;
+			children = (
+				D3D7F412226B46B100580F42 /* Shape.swift */,
+			);
+			path = Enums;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -155,9 +169,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D3D7F413226B46B100580F42 /* Shape.swift in Sources */,
 				D3D7F410226A42D800580F42 /* NSBezierPathExtensions.swift in Sources */,
 				D35AF032225693D80076CB96 /* SequencerView.swift in Sources */,
 				D35AF023225692F80076CB96 /* ViewController.swift in Sources */,
+				D3D7F415226B46E200580F42 /* DoubleExtensions.swift in Sources */,
 				D35AF021225692F80076CB96 /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

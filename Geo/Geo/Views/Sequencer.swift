@@ -10,8 +10,16 @@ import Foundation
 import Cocoa
 
 @IBDesignable
-class SequencerView: NSView {
+class Sequencer: NSControl {
     
+    let centerPointRadius: CGFloat = 12.0
+    
+    var polygon: Polygon! {
+        didSet {
+            self.layer?.sublayers?.removeAll()
+            self.layer?.addSublayer(self.polygon)
+        }
+    }
  
     override init(frame frameRect: NSRect) {
         super.init(frame: frameRect)
@@ -21,18 +29,20 @@ class SequencerView: NSView {
     required init?(coder decoder: NSCoder) {
         super.init(coder: decoder)
         initLayout()
-        
     }
     
     func initLayout() {
+        
+        // Set background
         self.layer = CALayer()
         wantsLayer = true
         self.layer?.backgroundColor = NSColor.black.cgColor
-    }
-    
-    override func draw(_ dirtyRect: NSRect) {
-        super.draw(dirtyRect)
         
+        // MARK: CREATE POLYGON
+        self.polygon = Polygon(shape: .nGon(6), bounds: self.frame)
+        self.layer?.addSublayer(self.polygon)
         
+        // TODO: Create Single node in center
+        // TODO: Create centre line
     }
 }

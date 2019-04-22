@@ -9,15 +9,13 @@
 import Foundation
 import Cocoa
 
+// MARK:- NOTES
+// 1. Maybe animate lines like this between transitions of shape
+// https://www.calayer.com/core-animation/2017/12/25/cashapelayer-in-depth-part-ii.html
+
 class Polygon: CAShapeLayer {
     
-    var shape: Shape = .triangle {
-        didSet {
-            addNodesFor(shape: self.shape)
-            updatePosition(theta: self.angle)
-            setNeedsDisplay()
-        }
-    }
+    private let color: CGColor  = NSColor.white.cgColor
     
     var nodes: [Node] = [Node]()
     var lines: CAShapeLayer!
@@ -25,7 +23,14 @@ class Polygon: CAShapeLayer {
     var size: CGFloat = 50.0
     var sizeMultuplier: CGFloat = 0.35
     
-    private let color: CGColor  = NSColor.white.cgColor
+    var shape: Shape = .triangle {
+        didSet {
+            addNodesFor(shape: self.shape)
+            // createLinesFor(shape: self.shape)
+            updatePosition(theta: self.angle)
+            setNeedsDisplay()
+        }
+    }
     
     convenience init(shape: Shape = .triangle, bounds: CGRect) {
         
@@ -36,7 +41,10 @@ class Polygon: CAShapeLayer {
         self.frame = bounds
         self.bounds = bounds
         self.size = bounds.height * self.sizeMultuplier
+        
         self.lines = CAShapeLayer(layer: self)
+        self.lines.frame = bounds
+        self.lines.bounds = bounds
         
         // Init Nodes
         addNodesFor(shape: self.shape)
@@ -64,39 +72,34 @@ class Polygon: CAShapeLayer {
     }
     
     func createLinesFor(shape: Shape) {
+        
+        self.lines.sublayers?.removeAll() // TODO: Optimise this like the node layers
+
+        let linePath = NSBezierPath()
+
+        self.lines.fillColor = nil
+        self.lines.opacity = 1.0
+        self.lines.strokeColor = NSColor.white.cgColor
+        self.lines.lineWidth = 1.0
+        
+        //self.lines.backgroundColor = NSColor.yellow.cgColor
+
         for (i, node) in self.nodes.enumerated() {
             
-            //            let point = CGPoint(x: pointX, y: pointY)
-            //
-            //            if i == 0 {
-            //                starPath.move(to: point)
-            //            } else {
-            //                starPath.addLine(to: point)
-            //            }
-            
-            //            CAShapeLayer *shapeLayer = [CAShapeLayer layer];
-            //            UIBezierPath *path = [UIBezierPath bezierPath];
-            //
-            //            [path moveToPoint:CGPointMake(30, 50)];
-            //            [path addLineToPoint:CGPointMake(40, 30)];
-            //            [path addLineToPoint:CGPointMake(60, 70)];
-            //            [path addLineToPoint:CGPointMake(80, 20)];
-            //            [path addLineToPoint:CGPointMake(100, 90)];
-            //            [path addLineToPoint:CGPointMake(120, 35)];
-            //            [path addLineToPoint:CGPointMake(140, 85)];
-            //            [path addLineToPoint:CGPointMake(160, 65)];
-            //            [path addLineToPoint:CGPointMake(180, 150)];
-            //
-            //            shapeLayer.path = path.CGPath;
-            //            shapeLayer.strokeColor = [UIColor orangeColor].CGColor;
-            //            shapeLayer.fillColor = [UIColor clearColor].CGColor;
-            //            [self.GraphView.layer addSublayer:shapeLayer];
+            if i == 0 {
+                linePath.move(to: node.position)
+            } else {
+                linePath.line(to: node.position)
+            }
         }
+        
+        self.lines.path = linePath.cgPath
     }
     
     func updatePosition(theta: Double) {
         setNodePositions(theta: theta)
-        setLinePositions()
+        createLinesFor(shape: self.shape)
+        //setLinePositions()
     }
     
     private func setNodePositions(theta: Double) {

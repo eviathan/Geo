@@ -28,7 +28,7 @@ class ViewController: NSViewController {
         let val = Int(sender.intValue)
         
         if lastValue != val {
-            sequencerView.polygon = Polygon(shape: .nGon(val), bounds: sequencerView.bounds)
+            sequencerView.polygon.shape = .nGon(val)
         }
         
         lastValue = val

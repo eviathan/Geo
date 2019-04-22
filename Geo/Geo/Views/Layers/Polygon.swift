@@ -18,7 +18,7 @@ class Polygon: CAShapeLayer {
     private let color: CGColor  = NSColor.white.cgColor
     
     var centrePoint:Node = Node()
-    var nodes: [Node] = [Node]()
+    var nodes: CAShapeLayer!
     var lines: CAShapeLayer!
     var angle: Double  = 0.0
     var size: CGFloat = 50.0
@@ -43,14 +43,17 @@ class Polygon: CAShapeLayer {
         self.bounds = bounds
         self.size = bounds.height * self.sizeMultuplier
         
+        // Init Nodes
+        self.nodes = CAShapeLayer(layer: self)
+        self.nodes.frame = bounds
+        self.nodes.bounds = bounds
+        addNodesFor(shape: self.shape)
+        self.addSublayer(self.nodes)
+        
+        // Init Lines
         self.lines = CAShapeLayer(layer: self)
         self.lines.frame = bounds
         self.lines.bounds = bounds
-        
-        // Init Nodes
-        addNodesFor(shape: self.shape)
-        
-        // Init Lines
         createLinesFor(shape: self.shape)
         self.addSublayer(self.lines)
         
@@ -70,16 +73,15 @@ class Polygon: CAShapeLayer {
     
     func addNodesFor(shape: Shape) {
         
-        let difference = shape.sides - self.nodes.count
+        let difference = self.nodes.sublayers != nil ? shape.sides - self.nodes.sublayers!.count : shape.sides
         
         if(difference >= 0) {
             for _ in 0..<difference {
                 let node = Node(parent: self)
-                nodes.append(node)
-                self.addSublayer(node)
+                self.nodes.addSublayer(node)
             }
         } else {
-            self.nodes.removeLast(abs(difference))
+            self.nodes.sublayers?.removeLast(abs(difference))
         }
     }
     
@@ -96,7 +98,7 @@ class Polygon: CAShapeLayer {
         
         //self.lines.backgroundColor = NSColor.yellow.cgColor
 
-        for (i, node) in self.nodes.enumerated() {
+        for (i, node) in self.nodes.sublayers!.enumerated() {
             
             if i == 0 {
                 linePath.move(to: node.position)
@@ -104,8 +106,8 @@ class Polygon: CAShapeLayer {
             else {
                 linePath.line(to: node.position)
                 
-                if i == self.nodes.count - 1  {
-                    linePath.line(to: nodes.first!.position)
+                if i == self.nodes.sublayers!.count - 1  {
+                    linePath.line(to: self.nodes.sublayers!.first!.position)
                 }
             }
         }
@@ -122,7 +124,7 @@ class Polygon: CAShapeLayer {
     private func setNodePositions(theta: Double) {
         self.angle = theta //((self.shape.angle + theta).truncatingRemainder(dividingBy: (Double.pi * 2.0) * Double(i)))
                 
-        for (i, node) in self.nodes.enumerated() {
+        for (i, node) in self.nodes.sublayers!.enumerated() {
             node.position = CGPoint(
                 x: sin((self.shape.angle * Double(i)).degreesToRadians()) // Set X Angle
                     * Double(self.size) // Set Distance from centre

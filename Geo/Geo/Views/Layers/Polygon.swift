@@ -17,6 +17,7 @@ class Polygon: CAShapeLayer {
     
     private let color: CGColor  = NSColor.white.cgColor
     
+    var centrePoint:Node = Node()
     var nodes: [Node] = [Node]()
     var lines: CAShapeLayer!
     var angle: Double  = 0.0
@@ -53,7 +54,18 @@ class Polygon: CAShapeLayer {
         createLinesFor(shape: self.shape)
         self.addSublayer(self.lines)
         
+        // Init CenterPoint
+        self.centrePoint.position = CGPoint(x: self.frame.width*0.5, y: self.frame.height*0.5)
+        self.addSublayer(self.centrePoint)
+        
         updatePosition(theta: 0.0)
+        
+        let rotation = CABasicAnimation(keyPath: "transform.rotation")
+        rotation.byValue = NSNumber(value: 2.0*Double.pi)
+        rotation.duration = 6
+        rotation.repeatCount = Float.infinity
+        
+        add(rotation, forKey: "lineRotation")
     }
     
     func addNodesFor(shape: Shape) {

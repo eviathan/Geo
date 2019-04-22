@@ -16,10 +16,17 @@ class Sequencer: NSControl {
     
     var polygon: Polygon! {
         didSet {
-            self.layer?.sublayers?.removeAll()
+            self.layer?.sublayers?.forEach({ layer in
+                if layer is Polygon {
+                    layer.removeFromSuperlayer()
+                }
+            })
+            
             self.layer?.addSublayer(self.polygon)
         }
     }
+    
+    var centreLine: CAShapeLayer!
  
     override init(frame frameRect: NSRect) {
         super.init(frame: frameRect)
@@ -38,11 +45,25 @@ class Sequencer: NSControl {
         wantsLayer = true
         self.layer?.backgroundColor = NSColor.black.cgColor
         
-        // MARK: CREATE POLYGON
-        self.polygon = Polygon(shape: .nGon(6), bounds: self.frame)
+        // MARK:- CREATE POLYGON
+        self.polygon = Polygon(shape: .nGon(3), bounds: self.frame)
         self.layer?.addSublayer(self.polygon)
         
-        // TODO: Create Single node in center
-        // TODO: Create centre line
+        // MARK:- Create CentreLine
+        self.centreLine = CAShapeLayer(layer: self.layer!)
+        createCentreLine(self.frame)
+        self.layer?.addSublayer(self.centreLine)
+        
+    }
+    
+    func createCentreLine(_ frame: CGRect) {
+        
+        let path = NSBezierPath()
+        path.move(to: CGPoint(x: frame.width * 0.5, y: frame.height))
+        path.line(to: CGPoint(x: frame.width * 0.5, y: frame.height * 0.5))
+        
+        centreLine.path = path.cgPath
+        centreLine.strokeColor = NSColor.white.cgColor
+        centreLine.lineWidth = 1.0
     }
 }

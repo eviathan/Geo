@@ -9,19 +9,30 @@
 import Cocoa
 
 class ViewController: NSViewController {
-
+    
+    @IBOutlet weak var sequencerView: Sequencer!
+    
+    @IBOutlet weak var sidesSlider: NSSlider!
+    @IBOutlet weak var angleSlider: NSSlider!
+    @IBOutlet weak var copiesSlider: NSSlider!
+    
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
     }
 
-    override var representedObject: Any? {
-        didSet {
-        // Update the view, if already loaded.
+    var lastValue: Int = 0
+    @IBAction func sliderChanged(_ sender: NSSlider) {
+        
+        let val = Int(sender.intValue)
+        
+        if lastValue != val {
+            sequencerView.polygon = Polygon(shape: .nGon(val), bounds: sequencerView.bounds)
         }
+        
+        lastValue = val
     }
-
-
 }
 

@@ -713,20 +713,116 @@
                         <rect key="frame" x="0.0" y="0.0" width="1000" height="600"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <subviews>
-                            <customView translatesAutoresizingMaskIntoConstraints="NO" id="689-sJ-GS7" customClass="SequencerView" customModule="Geo" customModuleProvider="target">
+                            <customView translatesAutoresizingMaskIntoConstraints="NO" id="689-sJ-GS7" customClass="Sequencer" customModule="Geo" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="600" id="f7N-YK-PMR"/>
                                     <constraint firstAttribute="height" constant="600" id="oYr-Am-ttp"/>
                                 </constraints>
                             </customView>
+                            <stackView distribution="fillEqually" orientation="vertical" alignment="centerX" horizontalStackHuggingPriority="249.99998474121094" verticalStackHuggingPriority="249.99998474121094" detachesHiddenViews="YES" translatesAutoresizingMaskIntoConstraints="NO" id="rN5-AM-lKU">
+                                <rect key="frame" x="597" y="0.0" width="403" height="600"/>
+                                <subviews>
+                                    <slider verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="QDU-6e-6ed">
+                                        <rect key="frame" x="50" y="525" width="304" height="77"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="300" id="P6v-iQ-n14"/>
+                                        </constraints>
+                                        <sliderCell key="cell" continuous="YES" state="on" alignment="left" minValue="1" maxValue="32" doubleValue="3" tickMarkPosition="above" sliderType="linear" id="HF6-O2-Het"/>
+                                        <connections>
+                                            <action selector="sliderChanged:" target="XfG-lQ-9wD" id="2eJ-Ye-3H4"/>
+                                        </connections>
+                                    </slider>
+                                    <slider verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="7jc-1p-M77">
+                                        <rect key="frame" x="50" y="487" width="304" height="34"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="30" id="Tod-uo-dCO"/>
+                                            <constraint firstAttribute="width" constant="300" id="og3-xt-wBd"/>
+                                            <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="30" id="yjT-dm-Dfm"/>
+                                        </constraints>
+                                        <sliderCell key="cell" state="on" alignment="left" maxValue="360" tickMarkPosition="above" sliderType="linear" id="bfU-yv-eaA"/>
+                                    </slider>
+                                    <slider verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="TPR-1t-YrX">
+                                        <rect key="frame" x="50" y="405" width="304" height="78"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="300" id="wCK-wl-mbA"/>
+                                        </constraints>
+                                        <sliderCell key="cell" state="on" alignment="left" maxValue="100" doubleValue="50" tickMarkPosition="above" sliderType="linear" id="dm4-GO-kMS"/>
+                                    </slider>
+                                    <slider verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="Tak-LD-dS2">
+                                        <rect key="frame" x="50" y="324" width="304" height="77"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="300" id="eTW-Dj-2jf"/>
+                                        </constraints>
+                                        <sliderCell key="cell" state="on" alignment="left" maxValue="100" doubleValue="50" tickMarkPosition="above" sliderType="linear" id="hHT-ec-1oR"/>
+                                    </slider>
+                                    <slider verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="t2D-1c-vVC">
+                                        <rect key="frame" x="50" y="242" width="304" height="78"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="300" id="DlN-He-TEn"/>
+                                        </constraints>
+                                        <sliderCell key="cell" state="on" alignment="left" maxValue="100" doubleValue="50" tickMarkPosition="above" sliderType="linear" id="DsY-h5-CJc"/>
+                                    </slider>
+                                    <slider verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="v2I-SL-Wgh">
+                                        <rect key="frame" x="50" y="161" width="304" height="77"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="300" id="xC0-U7-Xcs"/>
+                                        </constraints>
+                                        <sliderCell key="cell" state="on" alignment="left" maxValue="100" doubleValue="50" tickMarkPosition="above" sliderType="linear" id="Tey-Dn-uPx"/>
+                                    </slider>
+                                    <slider verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="Khp-GO-3Yf">
+                                        <rect key="frame" x="50" y="79" width="304" height="78"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="300" id="y2m-Li-WHK"/>
+                                        </constraints>
+                                        <sliderCell key="cell" state="on" alignment="left" maxValue="100" doubleValue="50" tickMarkPosition="above" sliderType="linear" id="zVm-6F-TX1"/>
+                                    </slider>
+                                    <slider verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="eAW-ye-ypl">
+                                        <rect key="frame" x="50" y="-2" width="304" height="77"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="300" id="kcg-7o-3r0"/>
+                                        </constraints>
+                                        <sliderCell key="cell" state="on" alignment="left" maxValue="100" doubleValue="50" tickMarkPosition="above" sliderType="linear" id="Dsy-bV-V1j"/>
+                                    </slider>
+                                </subviews>
+                                <visibilityPriorities>
+                                    <integer value="1000"/>
+                                    <integer value="1000"/>
+                                    <integer value="1000"/>
+                                    <integer value="1000"/>
+                                    <integer value="1000"/>
+                                    <integer value="1000"/>
+                                    <integer value="1000"/>
+                                    <integer value="1000"/>
+                                </visibilityPriorities>
+                                <customSpacing>
+                                    <real value="3.4028234663852886e+38"/>
+                                    <real value="3.4028234663852886e+38"/>
+                                    <real value="3.4028234663852886e+38"/>
+                                    <real value="3.4028234663852886e+38"/>
+                                    <real value="3.4028234663852886e+38"/>
+                                    <real value="3.4028234663852886e+38"/>
+                                    <real value="3.4028234663852886e+38"/>
+                                    <real value="3.4028234663852886e+38"/>
+                                </customSpacing>
+                            </stackView>
                         </subviews>
                         <constraints>
+                            <constraint firstAttribute="trailing" secondItem="rN5-AM-lKU" secondAttribute="trailing" id="6h6-ui-vC2"/>
+                            <constraint firstItem="rN5-AM-lKU" firstAttribute="leading" secondItem="m2S-Jp-Qdl" secondAttribute="leading" constant="597" id="CDd-vE-9C1"/>
                             <constraint firstAttribute="bottom" secondItem="689-sJ-GS7" secondAttribute="bottom" id="GPx-A8-4ZZ"/>
                             <constraint firstItem="689-sJ-GS7" firstAttribute="top" secondItem="m2S-Jp-Qdl" secondAttribute="top" id="OrQ-0H-Prc"/>
                             <constraint firstItem="689-sJ-GS7" firstAttribute="leading" secondItem="m2S-Jp-Qdl" secondAttribute="leading" id="UcQ-ie-2my"/>
+                            <constraint firstAttribute="bottom" secondItem="rN5-AM-lKU" secondAttribute="bottom" id="lcN-VB-jAe"/>
+                            <constraint firstItem="rN5-AM-lKU" firstAttribute="top" secondItem="m2S-Jp-Qdl" secondAttribute="top" id="yAh-ep-2cJ"/>
                         </constraints>
                     </view>
+                    <connections>
+                        <outlet property="angleSlider" destination="7jc-1p-M77" id="Y2I-yg-fmS"/>
+                        <outlet property="copiesSlider" destination="TPR-1t-YrX" id="k4K-hp-jrZ"/>
+                        <outlet property="sequencerView" destination="689-sJ-GS7" id="87g-ca-PCx"/>
+                        <outlet property="sidesSlider" destination="QDU-6e-6ed" id="dmR-W2-6rr"/>
+                    </connections>
                 </viewController>
                 <customObject id="rPt-NT-nkU" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
             </objects>

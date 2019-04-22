@@ -724,11 +724,11 @@
                                 <rect key="frame" x="597" y="0.0" width="403" height="600"/>
                                 <subviews>
                                     <slider verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="QDU-6e-6ed">
-                                        <rect key="frame" x="50" y="525" width="304" height="77"/>
+                                        <rect key="frame" x="50" y="525" width="304" height="75"/>
                                         <constraints>
                                             <constraint firstAttribute="width" constant="300" id="P6v-iQ-n14"/>
                                         </constraints>
-                                        <sliderCell key="cell" continuous="YES" state="on" alignment="left" minValue="1" maxValue="32" doubleValue="3" tickMarkPosition="above" sliderType="linear" id="HF6-O2-Het"/>
+                                        <sliderCell key="cell" continuous="YES" state="on" alignment="left" minValue="1" maxValue="32" doubleValue="3" tickMarkPosition="above" numberOfTickMarks="32" allowsTickMarkValuesOnly="YES" sliderType="linear" id="HF6-O2-Het"/>
                                         <connections>
                                             <action selector="sliderChanged:" target="XfG-lQ-9wD" id="2eJ-Ye-3H4"/>
                                         </connections>

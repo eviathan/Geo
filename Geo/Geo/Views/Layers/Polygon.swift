@@ -88,8 +88,13 @@ class Polygon: CAShapeLayer {
             
             if i == 0 {
                 linePath.move(to: node.position)
-            } else {
+            }
+            else {
                 linePath.line(to: node.position)
+                
+                if i == self.nodes.count - 1  {
+                    linePath.line(to: nodes.first!.position)
+                }
             }
         }
         
